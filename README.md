@@ -86,7 +86,7 @@ dependencies:
 
 ```bash
 # Clone this repository
-git clone https://github.com/yourusername/krishi.git
+git clone https://github.com/krishnakant2004/krishi.git
 
 # Navigate to the project directory
 cd krishi
