@@ -14,6 +14,12 @@ Krishi is a comprehensive Flutter-based mobile application designed to empower f
 - Identifies specific crops from images
 - Detects diseases affecting crops and provides treatment recommendations
 
+### Crop Marketplace
+Platform for farmers to buy and sell their crops directly
+Transparent pricing and real-time market rates
+Direct connection between farmers and buyers, reducing dependency on middlemen
+Secure payment processing and transaction history
+
 ### On-Demand Machinery Accessibility
 - Rental and hiring services for agricultural machinery
 - Real-time availability checking
