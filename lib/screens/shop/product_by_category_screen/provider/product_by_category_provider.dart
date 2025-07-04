@@ -107,6 +107,7 @@ class ProductByCategoryProvider extends ChangeNotifier {
     }
     updateUI();
   }
+
   void sortProduct({required bool ascending}) {
     filteredProduct.sort((a, b) {
       if (ascending) {

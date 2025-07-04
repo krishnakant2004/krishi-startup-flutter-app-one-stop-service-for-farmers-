@@ -17,6 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   late CarouselSliderController carouselController = CarouselSliderController();
   int currentPage = 0;
+
   @override
   void initState() {
     super.initState();
@@ -24,209 +25,49 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    Size size;
-    double height, width;
+    Size size = MediaQuery.of(context).size;
+    double height = size.height;
+    double width = size.width;
 
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
     return Scaffold(
-      backgroundColor: Colors.white.withOpacity(0.8),
+      backgroundColor: const Color(0xFFF5F5F7), // Apple-like light background
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: false,
         title: const Text(
           "Krishi",
-          style: TextStyle(color: Colors.black, fontSize: 24),
+          style: TextStyle(
+            color: Color(0xFF1D1D1F),
+            fontWeight: FontWeight.w600,
+            fontSize: 28,
+            letterSpacing: -0.5,
+          ),
         ),
-        actions: [Switch(value: true, onChanged: (val) {})],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Switch(
+              value: true,
+              onChanged: (val) {},
+              activeColor: const Color(0xFF0071E3), // Apple blue accent
+              activeTrackColor: const Color(0xFFB9D9EB),
+            ),
+          )
+        ],
       ),
       body: SizedBox.expand(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _innerBannerSlider(height, width),
-              const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Text(
-                  "Register and Scan Crop",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(fontSize: 18),
-                ),
-              ),
-              Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Material(
-                      elevation: 7,
-                      borderRadius: BorderRadius.circular(12),
-                      child: Container(
-                        height: 100,
-                        width: 160,
-                        decoration: BoxDecoration(
-                          image: const DecorationImage(
-                              image: AssetImage("assets/images/govSheme.png"),
-                              fit: BoxFit.fill),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.only(top: 4, left: 0),
-                          child: Text(
-                            "Register and\n View gov schemes. ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const PredictPage(),
-                          ),
-                        );
-                      },
-                      child: Material(
-                        elevation: 7,
-                        borderRadius: BorderRadius.circular(12),
-                        child: Container(
-                          height: 100,
-                          width: 160,
-                          decoration: BoxDecoration(
-                            image: const DecorationImage(
-                                image: AssetImage("assets/images/detect.png"),
-                                fit: BoxFit.fill),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Container(
-                            margin: const EdgeInsets.only(
-                                left: 4, right: 4, top: 10, bottom: 90),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Colors.white.withOpacity(0.9)),
-                            child: const Center(
-                              child: Text("crop Doctor"),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Text(
-                  "Crop Services",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(fontSize: 18),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.3),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: Colors.blue, // Border color
-                    width: 1.0, // Border width
-                  ),
-                ),
-                child: GridView(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                    childAspectRatio: 1,
-                  ),
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PredictPage(),
-                        ),
-                      ),
-                      child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 15),
-                          height: 60,
-                          //width: 50,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [
-                                Color(0xff00ddff),
-                                Color(0xffff00d4),
-                              ],
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Text(
-                            "Pridic\nDisease",
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w400),
-                          )),
-                    ),
-                    GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CropPredictionForm(),
-                        ),
-                      ),
-                      child: Container(
-                        height: 50,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 15),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [
-                              Color(0xff00ddff),
-                              Color(0xffff00d4),
-                            ],
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Text(
-                          "Recommand\nCrop",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              _bannerSlider(height, width),
+              const SizedBox(height: 24),
+              _sectionTitle(context, "Register and Scan Crop"),
+              _registerScanSection(context),
+              const SizedBox(height: 24),
+              _sectionTitle(context, "Crop Services"),
+              _cropServicesSection(context),
             ],
           ),
         ),
@@ -234,113 +75,381 @@ class _HomeState extends State<Home> {
     );
   }
 
-  /// Inner Style Indicators Banner Slider
-  Widget _innerBannerSlider(double height, double width) {
-    return Column(
-      children: [
-        /// Slider Style
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: Text(
-                "Goverment schemes",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+  Widget _sectionTitle(BuildContext context, String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF1D1D1F),
+          letterSpacing: -0.5,
+        ),
+      ),
+    );
+  }
+
+  Widget _registerScanSection(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      child: Row(
+        children: [
+          Expanded(
+            child: _appleStyleCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: const DecorationImage(
+                        image: AssetImage("assets/images/govSheme.png"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  const Text(
+                    "Register and View",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      color: Color(0xFF1D1D1F),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  const Text(
+                    "Government Schemes",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Color(0xFF86868B),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: Text(
-                "See All",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.black.withOpacity(0.6),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PredictPage(),
+                  ),
+                );
+              },
+              child: _appleStyleCard(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 120,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image: const DecorationImage(
+                          image: AssetImage("assets/images/detect.png"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 12, left: 12),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.white.withOpacity(0.85),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.05),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: const Text(
+                          "Crop Doctor",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF1D1D1F),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      "Identify Issues",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Color(0xFF1D1D1F),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    const Text(
+                      "Scan your crops",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF86868B),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
+    );
+  }
 
+  Widget _cropServicesSection(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const PredictPage(),
+              ),
+            ),
+            child: _appleStyleCard(
+              gradient: const LinearGradient(
+                colors: [
+                  Color(0xFF2AC4FA),
+                  Color(0xFF0A84FF),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            "Predict Disease",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Scan and identify crop diseases quickly",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: const Icon(
+                        Icons.health_and_safety_outlined,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CropPredictionForm(),
+              ),
+            ),
+            child: _appleStyleCard(
+              gradient: const LinearGradient(
+                colors: [
+                  Color(0xFF30D158),
+                  Color(0xFF007F5F),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            "Recommend Crop",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Get personalized crop recommendations",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: const Icon(
+                        Icons.eco_outlined,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _appleStyleCard({required Widget child, LinearGradient? gradient}) {
+    return Container(
+      decoration: BoxDecoration(
+        color: gradient == null ? Colors.white : null,
+        gradient: gradient,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+            spreadRadius: 0,
+          ),
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: child,
+    );
+  }
+
+  Widget _bannerSlider(double height, double width) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 16, bottom: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "Government Schemes",
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: -0.5,
+                  color: Color(0xFF1D1D1F),
+                ),
+              ),
+              Text(
+                "See All",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xFF0071E3).withOpacity(0.9),
+                ),
+              ),
+            ],
+          ),
+        ),
         SizedBox(
-          height: height * .22,
+          height: height * 0.25,
           width: width,
           child: Stack(
             alignment: Alignment.center,
             children: [
-              /// Carouse lSlider
               Positioned.fill(
                 child: CarouselSlider(
                   carouselController: CarouselSliderController(),
-
-                  /// It's options
                   options: CarouselOptions(
                     autoPlay: true,
                     enlargeCenterPage: true,
                     enableInfiniteScroll: true,
-                    viewportFraction: 0.8,
+                    viewportFraction: 0.85,
+                    aspectRatio: 2.0,
                     onPageChanged: (index, reason) {
                       setState(() {
                         currentPage = index;
                       });
                     },
                   ),
-
-                  /// Items
                   items: AppData.innerStyleImages.map((imagePath) {
                     return Builder(
                       builder: (BuildContext context) {
-                        /// Custom Image Viewer widget
-                        return CustomImageViewer.show(
-                          context: context,
-                          url: imagePath,
-                          fit: BoxFit.cover,
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 15,
+                                offset: const Offset(0, 8),
+                                spreadRadius: 0,
+                              ),
+                            ],
+                          ),
+                          clipBehavior: Clip.antiAlias,
+                          child: CustomImageViewer.show(
+                            context: context,
+                            url: imagePath,
+                            fit: BoxFit.cover,
+                          ),
                         );
                       },
                     );
                   }).toList(),
                 ),
               ),
-
-              /// Indicators
               Positioned(
-                bottom: height * .02,
-                // child: Row(
-                //   children: List.generate(
-                //     AppData.innerStyleImages.length,
-                //     (index) {
-                //       bool isSelected = currentPage == index;
-                //       return AnimatedContainer(
-                //         width: isSelected ? 55 : 17,
-                //         height: 10,
-                //         margin: EdgeInsets.symmetric(
-                //             horizontal: isSelected ? 6 : 3),
-                //         decoration: BoxDecoration(
-                //           color: isSelected
-                //               ? Colors.black87.withOpacity(0.6)
-                //               : Colors.black.withOpacity(0.5),
-                //           borderRadius: BorderRadius.circular(
-                //             40,
-                //           ),
-                //         ),
-                //         duration: const Duration(milliseconds: 300),
-                //         curve: Curves.ease,
-                //       );
-                //     },
-                //   ),
-                // ),
+                bottom: 16,
                 child: AnimatedSmoothIndicator(
-                    activeIndex: currentPage,
-                    count: AppData.innerStyleImages.length,
-                  axisDirection: Axis.horizontal,
-                  effect:const ExpandingDotsEffect(
-                    activeDotColor: Colors.green,
-                    dotColor: Colors.white54,
-                    dotHeight: 12,
-                    dotWidth: 24,
-                    radius: 12,
-                    spacing: 10,
-                    strokeWidth: 20,
+                  activeIndex: currentPage,
+                  count: AppData.innerStyleImages.length,
+                  effect: const SlideEffect(
+                    activeDotColor: Color(0xFF0071E3),
+                    dotColor: Color(0xFFE5E5EA),
+                    dotHeight: 6,
+                    dotWidth: 6,
+                    spacing: 8,
+                    radius: 3,
                   ),
                 ),
               ),
@@ -350,5 +459,4 @@ class _HomeState extends State<Home> {
       ],
     );
   }
-
 }

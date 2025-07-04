@@ -68,10 +68,10 @@ class AppData {
   ];
 
   static List<String> innerStyleImages = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1Dw7-4lVfRq74_YEiPEt4e-bQ0_6UA2y73Q&s",
-    "https://i0.wp.com/picjumbo.com/wp-content/uploads/amazing-stone-path-in-forest-free-image.jpg?w=600&quality=80",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXJA32WU4rBpx7maglqeEtt3ot1tPIRWptxA&s",
-    "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
+    "https://up.yimg.com/ib/th?id=OIP.jSsupCCyjqFoJFfjMol65QHaDi&pid=Api&rs=1&c=1&qlt=95&w=255&h=121",
+    "https://up.yimg.com/ib/th?id=OIP.By7NmR8u9fUYLqT3nEYThwHaEK&pid=Api&rs=1&c=1&qlt=95&w=215&h=120",
+    "https://tse3.mm.bing.net/th?id=OIP.Y_7A5CQA88jQv9XlZtZMWAHaEK&pid=Api&P=0&h=220",
+    "https://tse4.mm.bing.net/th?id=OIP.ycScLsY3JdYkNkz3RmmYVwAAAA&pid=Api&P=0&h=220",
+    "https://tse1.mm.bing.net/th?id=OIP.W_DyY7pJHsswWLOFxzQCtQHaEK&pid=Api&P=0&h=220",
   ];
 }

@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../utility/constants.dart';
+
 class CustomNetworkImage extends StatelessWidget {
   String imageUrl;
   final BoxFit fit;
@@ -22,7 +24,8 @@ class CustomNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (kDebugMode) {
       print(imageUrl);
-    }imageUrl = imageUrl.replaceAll('localhost', '192.168.137.244');
+    }
+     imageUrl = imageUrl.replaceAll('localhost', '192.168.158.169');
     return Image.network(
       imageUrl,
       fit: fit,

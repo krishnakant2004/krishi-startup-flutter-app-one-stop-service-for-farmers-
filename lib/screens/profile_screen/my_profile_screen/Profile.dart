@@ -148,24 +148,27 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(height: defaultPadding),
 
           // Log Out
-          ListTile(
-            onTap: () {
-              context.userProvider.clearFields();
-              context.userProvider.logOutUser();
-            },
-            minLeadingWidth: 24,
-            leading: SvgPicture.asset(
-              "assets/icons/Logout.svg",
-              height: 24,
-              width: 24,
-              colorFilter: const ColorFilter.mode(
-                errorColor,
-                BlendMode.srcIn,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListTile(
+              onTap: () {
+                context.userProvider.clearFields();
+                context.userProvider.logOutUser();
+              },
+              minLeadingWidth: 24,
+              leading: SvgPicture.asset(
+                "assets/icons/Logout.svg",
+                height: 24,
+                width: 24,
+                colorFilter: const ColorFilter.mode(
+                  errorColor,
+                  BlendMode.srcIn,
+                ),
               ),
-            ),
-            title: const Text(
-              "Log Out",
-              style: TextStyle(color: errorColor, fontSize: 14, height: 1),
+              title: const Text(
+                "Log Out",
+                style: TextStyle(color: errorColor, fontSize: 14, height: 1),
+              ),
             ),
           )
         ],

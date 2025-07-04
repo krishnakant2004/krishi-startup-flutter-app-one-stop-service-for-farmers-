@@ -57,18 +57,6 @@ class CategorySelector extends StatelessWidget {
                         scale: 1,
                       ),
                     )),
-                // child: OpenContainerWrapper(
-                //   color: Colors.grey[200] ?? const Color(0xFFE5E6E8),
-                //   borderRadius: 60,
-                //   nextScreen: ProductByCategoryScreen(
-                //     selectedCategory: category,
-                //   ),
-                //   child: CustomNetworkImage(
-                //     imageUrl: imageUrl,
-                //     fit: BoxFit.cover,
-                //     scale: 1,
-                //   ),
-                // ),
               ),
               const Gap(4),
               SizedBox(

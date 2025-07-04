@@ -53,15 +53,12 @@ class ProductListProvider extends ChangeNotifier {
         getAllCategory(showSnack: false),
         getAllSubCategory(showSnack: false),
         getAllBrands(showSnack: false)
-      ]).timeout(const Duration(seconds: 10), onTimeout: () {
-        _isFetching = false;
-        throw TimeoutException('Login request timed out');
-      });
+      ]);
     } catch (e) {
       if (kDebugMode) {
         print('Error in fetchData: $e');
       }
-      SnackBarHelper.showErrorSnackBar("Something went wrong");
+      SnackBarHelper.showErrorSnackBar("$e");
     } finally {
       _isFetching = false;
       if (kDebugMode) {
@@ -223,6 +220,7 @@ class ProductListProvider extends ChangeNotifier {
   Future<void> getAllProducts({bool showSnack = false}) async {
     try {
       Response response = await service.getItems(endpointUrl: 'products');
+      print(response.body);
       if (response.isOk) {
         ApiResponse<List<Product>> apiResponse = ApiResponse.fromJson(
             response.body,

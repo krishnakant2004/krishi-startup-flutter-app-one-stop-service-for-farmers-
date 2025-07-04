@@ -93,8 +93,8 @@ List<String> carouselForPromotion=[
 const kcontentColor = Color(0xffEEEEEE);
 const kprimaryColor= Color(0xffff660e);
 const kbackgroundColor=Color(0xffe9f5f8);
-const MAIN_URL = 'http://192.168.137.244:3000';
-
+const MAIN_URL = 'https://krishi-backend-4iyt.onrender.com';
+const replace_image_ip ='https://krishi-backend-4iyt.onrender.com';
 const FAVORITE_PRODUCT_BOX = 'FAVORITE_PRODUCT_BOX';
 const USER_INFO_BOX = 'USER_INFO_BOX';
 

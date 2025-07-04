@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return const LoginPage();
     // return FlutterLogin(
     //   // savedEmail: 'testing@gmail.com',
     //   // savedPassword: '12345',

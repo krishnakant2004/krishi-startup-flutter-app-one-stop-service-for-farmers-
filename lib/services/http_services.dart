@@ -10,9 +10,9 @@ class HttpService {
 
   Future<Response> getItems({required String endpointUrl}) async {
     try {
-      final connect = GetConnect(timeout: const Duration(seconds: 10));
+      final connect = GetConnect(timeout: const Duration(seconds: 30));
       return await connect.get('$baseUrl/$endpointUrl').timeout(
-        const Duration(seconds: 10),
+        const Duration(seconds: 30),
         onTimeout: () {
           throw TimeoutException('request timed out');
         },
@@ -20,6 +20,7 @@ class HttpService {
     } on TimeoutException {
       throw TimeoutException('request timed out');
     } on Exception catch (e) {
+      print(e.toString());
       return Response(
           body: json.encode({'error': e.toString()}), statusCode: 500);
     }
@@ -28,10 +29,10 @@ class HttpService {
   Future<Response> addItem(
       {required String endpointUrl, required dynamic itemData}) async {
     try {
-      final connect = GetConnect(timeout: const Duration(seconds: 10));
+      final connect = GetConnect(timeout: const Duration(seconds: 30));
       final response =
           await connect.post('$baseUrl/$endpointUrl', itemData).timeout(
-        const Duration(seconds: 10),
+        const Duration(seconds: 30),
         onTimeout: () {
           throw TimeoutException('request timed out');
         },
@@ -54,11 +55,11 @@ class HttpService {
       required String itemId,
       required dynamic itemData}) async {
     try {
-      final connect = GetConnect(timeout: const Duration(seconds: 10));
+      final connect = GetConnect(timeout: const Duration(seconds: 30));
       return await connect
           .put('$baseUrl/$endpointUrl/$itemId', itemData)
           .timeout(
-        const Duration(seconds: 10),
+        const Duration(seconds: 30),
         onTimeout: () {
           throw TimeoutException('request timed out');
         },
@@ -72,9 +73,9 @@ class HttpService {
   Future<Response> deleteItem(
       {required String endpointUrl, required String itemId}) async {
     try {
-      final connect = GetConnect(timeout: const Duration(seconds: 10));
+      final connect = GetConnect(timeout: const Duration(seconds: 30));
       return await connect.delete('$baseUrl/$endpointUrl/$itemId').timeout(
-        const Duration(seconds: 10),
+        const Duration(seconds: 30),
         onTimeout: () {
           throw TimeoutException('request timed out');
         },
@@ -92,9 +93,9 @@ class HttpService {
         print('$baseUrl/$endpointUrl');
       }
       final payload = {'name': key};
-      final connect = GetConnect(timeout: const Duration(seconds: 10));
+      final connect = GetConnect(timeout: const Duration(seconds: 30));
       return await connect.post('$baseUrl/$endpointUrl', payload).timeout(
-        const Duration(seconds: 10),
+        const Duration(seconds: 30),
         onTimeout: () {
           throw TimeoutException('request timed out');
         },

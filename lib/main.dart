@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cart/cart.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -16,15 +17,19 @@ import 'package:krishidost/screens/shop/product_list_screen/provider/product_lis
 import 'package:krishidost/utility/extensions.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 import 'models/user.dart';
 import 'theme.dart';
 import 'screens/UserScreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await GetStorage.init();
   var cart = FlutterCart();
-  OneSignal.initialize("7817d9df-6c43-45bd-b850-a9abb6fe7959");
+  OneSignal.initialize("93572ec3-f818-4cb5-a5f5-a5ba9758922a");
   await cart.initializeCart(isPersistenceSupportEnabled: false);
 
   runApp(MultiProvider(
