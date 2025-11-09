@@ -98,10 +98,7 @@ class _PredictPageState extends State<PredictPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: Colors.black.withOpacity(0.8),
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        backgroundColor: Colors.black87,
       ),
     );
   }
@@ -116,111 +113,65 @@ class _PredictPageState extends State<PredictPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F7), // Apple light background
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          "Plant Analysis",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-            letterSpacing: -0.5,
-          ),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
+        title: const Text("Plant Disease Detection"),
+        elevation: 2,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Identify Plant Disease",
+                "Crop Name:",
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1C1C1E),
-                  letterSpacing: -0.5,
                 ),
               ),
               const SizedBox(height: 8),
+              TextField(
+                controller: controller_crop,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: "Enter crop name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 12,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
               const Text(
-                "Take or select a photo of your plant to identify potential diseases",
+                "Plant Image:",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color(0xFF636366),
-                  height: 1.3,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 30),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 10,
-                      spreadRadius: 0,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
-                padding: const EdgeInsets.all(16),
-                child: TextField(
-                  controller: controller_crop,
-                  keyboardType: TextInputType.text,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Color(0xFF1C1C1E),
-                  ),
-                  decoration: InputDecoration(
-                    labelText: "Crop Name",
-                    labelStyle: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 16,
-                    ),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    filled: true,
-                    fillColor: const Color(0xFFF2F2F7),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 8),
               Center(
                 child: Container(
                   width: double.infinity,
                   height: 280,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color(0xFF34C759).withOpacity(0.9),
-                        const Color(0xFF30B0C7).withOpacity(0.9),
-                      ],
+                    color: Colors.grey.shade200,
+                    border: Border.all(
+                      color: Colors.grey.shade400,
+                      width: 2,
                     ),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFF34C759).withOpacity(0.3),
-                        blurRadius: 15,
-                        spreadRadius: 0,
-                        offset: const Offset(0, 8),
-                      ),
-                    ],
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   child: Stack(
                     children: [
                       if (_image != null || _pickedImageUrl != null)
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(2),
                           child: Container(
                             width: double.infinity,
                             height: double.infinity,
@@ -240,17 +191,16 @@ class _PredictPageState extends State<PredictPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
-                                Icons.add_photo_alternate_outlined,
+                                Icons.image,
                                 size: 60,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.grey.shade600,
                               ),
-                              const SizedBox(height: 16),
-                              const Text(
-                                "Add a plant photo",
+                              const SizedBox(height: 12),
+                              Text(
+                                "No image selected",
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey.shade700,
+                                  fontSize: 16,
                                 ),
                               ),
                             ],
@@ -258,17 +208,17 @@ class _PredictPageState extends State<PredictPage> {
                         ),
                       if (_image != null || _pickedImageUrl != null)
                         Positioned(
-                          top: 12,
-                          right: 12,
+                          top: 8,
+                          right: 8,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.6),
-                              shape: BoxShape.circle,
+                              color: Colors.white,
+                              border: Border.all(color: Colors.grey.shade400),
                             ),
                             child: IconButton(
                               icon: const Icon(
-                                Icons.close_rounded,
-                                color: Colors.white,
+                                Icons.close,
+                                color: Colors.black,
                                 size: 20,
                               ),
                               onPressed: _eraseImage,
@@ -279,164 +229,75 @@ class _PredictPageState extends State<PredictPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 24),
               Row(
                 children: [
                   Expanded(
-                    child: _buildActionButton(
-                      icon: Icons.photo_library_rounded,
-                      label: "Gallery",
-                      color1: const Color(0xFF5E5CE6),
-                      color2: const Color(0xFF7B7BF7),
+                    child: ElevatedButton.icon(
+                      icon: const Icon(Icons.photo_library),
+                      label: const Text("Gallery"),
                       onPressed: () => _pickImage(ImageSource.gallery),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 12),
                   Expanded(
-                    child: _buildActionButton(
-                      icon: Icons.camera_alt_rounded,
-                      label: "Camera",
-                      color1: const Color(0xFFFF9500),
-                      color2: const Color(0xFFFFCC00),
+                    child: ElevatedButton.icon(
+                      icon: const Icon(Icons.camera_alt),
+                      label: const Text("Camera"),
                       onPressed: () => _pickImage(ImageSource.camera),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 24),
               SizedBox(
                 width: double.infinity,
-                height: 56,
+                height: 50,
                 child: ElevatedButton(
                   onPressed: isPredicting
                       ? null
                       : () async {
-                    setState(() {
-                      isPredicting = true;
-                    });
-                    await predictImage();
-                    setState(() {
-                      isPredicting = false;
-                    });
-                  },
+                          setState(() {
+                            isPredicting = true;
+                          });
+                          await predictImage();
+                          setState(() {
+                            isPredicting = false;
+                          });
+                        },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    disabledBackgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    padding: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(4),
                     ),
                   ),
-                  child: Container(
-                    width: double.infinity,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: isPredicting
-                            ? [
-                          const Color(0xFF007AFF).withOpacity(0.5),
-                          const Color(0xFF0044FF).withOpacity(0.5),
-                        ]
-                            : [
-                          const Color(0xFF007AFF),
-                          const Color(0xFF0044FF),
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: isPredicting
-                          ? []
-                          : [
-                        BoxShadow(
-                          color: const Color(0xFF007AFF).withOpacity(0.4),
-                          blurRadius: 12,
-                          offset: const Offset(0, 6),
+                  child: isPredicting
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          ),
+                        )
+                      : const Text(
+                          "Predict Disease",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ],
-                    ),
-                    child: Center(
-                      child: isPredicting
-                          ? const SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.5,
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      )
-                          : const Text(
-                        "Analyze Plant",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: -0.3,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildActionButton({
-    required IconData icon,
-    required String label,
-    required Color color1,
-    required Color color2,
-    required VoidCallback onPressed,
-  }) {
-    return SizedBox(
-      height: 100,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.zero,
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [color1, color2],
-            ),
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: color1.withOpacity(0.3),
-                blurRadius: 10,
-                spreadRadius: 0,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                color: Colors.white,
-                size: 32,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                label,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],
