@@ -4,6 +4,10 @@
 
 Krishi is a comprehensive Flutter-based mobile application designed to empower farmers through technology and seamless service delivery. The platform integrates advanced agricultural technologies with user-friendly interfaces to address various challenges faced by farmers.
 
+<video src="VID-20250628-WA0001.mp4" controls="controls" style="max-width: 100%;">
+  overview of krishi project
+</video>
+
 ## Features
 
 ### Crop Recommendation System
